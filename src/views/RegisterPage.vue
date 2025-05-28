@@ -17,7 +17,6 @@ const registerForm = reactive({
     confirmPassword: '',
 });
 
-// 自定义密码验证规则
 const validatePass = (rule, value, callback) => {
     if (value === '') {
         callback(new Error('请输入密码'));
@@ -39,7 +38,6 @@ const validatePassConfirm = (rule, value, callback) => {
     }
 };
 
-// 表单验证规则
 const registerRules = reactive({
     username: [
         { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -58,28 +56,25 @@ const registerRules = reactive({
     ],
 });
 
-// const isLoading = ref(false); // 使用 authStore.isLoading
+const isLoading = ref(false);
 
 const handleRegister = async (formEl) => {
     if (!formEl) return;
     await formEl.validate(async (valid) => {
         if (valid) {
-            // isLoading.value = true;
+            isLoading.value = true;
             try {
                 await authStore.register({
                     username: registerForm.username,
                     email: registerForm.email,
                     password: registerForm.password,
                 });
-                // authStore.register 内部应处理提示和跳转
-                // 如果 store 没处理，可以在这里处理：
-                // ElMessage.success('注册成功！将跳转到登录页。');
-                // router.push({ name: 'Login' });
+                ElMessage.success('注册成功！将跳转到登录页。');
+                router.push({ name: 'Login' });
             } catch (error) {
-                // *** 已修复: 取消注释 ElMessage.error ***
                 ElMessage.error(authStore.registrationError || '注册失败，请稍后再试。');
             } finally {
-                // isLoading.value = false;
+                isLoading.value = false;
             }
         } else {
             ElMessage.error('请检查表单输入项。');
@@ -89,7 +84,7 @@ const handleRegister = async (formEl) => {
 };
 
 function goToLogin() {
-    router.push({ name: 'Login' }); // 确保您有 'Login' 路由
+    router.push({ name: 'Login' });
 }
 </script>
 
@@ -133,8 +128,6 @@ function goToLogin() {
 </template>
 
 <style scoped>
-/* *** 已修复: 移除了多余的注释符号 *** */
-/* 使用与 LoginPage.vue 相同的样式，或者根据需要进行调整 */
 .auth-page {
     display: flex;
     justify-content: center;
@@ -146,17 +139,9 @@ function goToLogin() {
 
 .auth-card {
     width: 100%;
-    max-width: 420px;
-    /* 注册卡片可以稍宽一些 */
+    max-width: 470px;
     border-radius: 8px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-}
-
-.el-card__header {
-    /* 同上，建议使用 :deep() */
-    font-size: 1.5rem;
-    text-align: center;
-    font-weight: 500;
 }
 
 .form-footer {

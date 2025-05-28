@@ -1,16 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import { useAuthStore } from '@/stores/modules/auth'
-import SimplestPage from '../views/SimplestPage.vue' // 创建一个新文件
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'Simple',
-    //   component: SimplestPage,
-    // },
     {
       path: '/',
       name: 'Home',
@@ -25,31 +19,28 @@ const router = createRouter({
       path: '/portfolio',
       name: 'Portfolio',
       component: () => import('../components/PortfolioItem.vue')
-      // CUSTOMIZATION: 创建并链接到您的 PortfolioPage.vue
     },
     {
       path: '/contact',
       name: 'Contact',
       component: () => import('../views/ContactPage.vue')
-      // CUSTOMIZATION: 创建并链接到您的 ContactPage.vue
     },
     {
       path: '/login',
       name: 'Login',
       component: () => import('../views/LoginPage.vue'),
-      meta: { requiresGuest: true } // CUSTOMIZATION: 路由元信息，例如用于导航守卫
+      meta: { requiresGuest: true }
     },
     {
       path: '/register',
       name: 'Register',
       component: () => import('../views/RegisterPage.vue'),
-      meta: { requiresGuest: true } // CUSTOMIZATION: 路由元信息
+      meta: { requiresGuest: true }
     },
     {
-      path: '/:pathMatch(.)', // 匹配所有未匹配到的路径
+      path: '/:pathMatch(.)',
       name: 'NotFound',
       component: () => import('../views/NotFoundPage.vue')
-      // CUSTOMIZATION: 创建一个 NotFoundPage.vue 用于处理无效路径
     }
   ],
   //   // CUSTOMIZATION: 可以添加 scrollBehavior 来自定义路由切换时的滚动行为

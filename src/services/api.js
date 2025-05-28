@@ -5,7 +5,7 @@ import { useAuthStore } from '@/stores/modules/auth'; // 用于获取 token
 
 // CUSTOMIZATION: 将 baseURL 替换为您的实际后端 API 地址
 const apiClient = axios.create({
-    baseURL: 'http://localhost:5173/api', // 示例: 假设您的后端API在本地3000端口
+    baseURL: 'http://localhost:3000/api', // 示例: 假设您的后端API在本地3000端口
     // baseURL: 'https://api.example.com/v1', // 生产环境示例
     headers: {
         'Content-Type': 'application/json',

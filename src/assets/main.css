@@ -33,3 +33,27 @@ a,
     padding: 0 2rem;
   }
 }
+
+
+/* 示例全局样式 */
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  /* 定义一个基础文字颜色 */
+  min-height: 100vh;
+  /* 确保应用至少占满整个视口高度 */
+  display: flex;
+  /* 为布局提供基础 */
+  flex-direction: column;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

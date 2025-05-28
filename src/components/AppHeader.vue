@@ -9,7 +9,6 @@ const authStore = useAuthStore()
 const isAuthenticated = computed(() => authStore.isAuthenticated)
 const currentUser = computed(() => authStore.currentUser)
 
-// 定义导航链接（已补全）
 const navLinks = [
   { name: 'Home', text: '首页' },
   { name: 'Portfolio', text: '作品集' },
@@ -28,7 +27,7 @@ const activeIndex = computed(() => router.currentRoute.value.name || 'Home')
 <template>
   <div class="app-header-content container">
     <div class="logo" @click="router.push({ name: 'Home' })">
-      MyPortfolio
+      范杰-VUE期末考核项目
     </div>
 
     <el-menu :default-active="activeIndex" class="el-menu-nav" mode="horizontal" router :ellipsis="false">

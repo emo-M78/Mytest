@@ -7,30 +7,29 @@ import { CollectionTag, ChatDotRound } from '@element-plus/icons-vue'
 const router = useRouter()
 
 const personalInfo = ref({
-  name: '您的名字 / 您的品牌',
-  tagline: '一位充满激情的前端开发者 / UI/UX 设计师 / 热爱创造者',
-  introduction: '欢迎来到我的个人空间。我致力于通过代码和设计创造富有吸引力且实用的数字体验。在这里，您可以了解到我的技能、项目经验以及我对技术的热情。让我们一起探索技术的无限可能！',
+  name: '范杰 / 24P1120108054',
+  tagline: '一位正在学习中快速成长的编程学习者',
+  introduction: '欢迎来到我的期末考核项目。在这里，您可以了解到我的技能、项目经验，每个项目都见证着我的理解和进步。非常荣幸能向您展示这个阶段性的学习成果。让我们一起探索技术的无限可能！',
   heroImageUrl: '/images/hero-placeholder.jpg'
 })
 
 const featuredProjects = ref([
   {
     id: 'proj1',
-    title: '特色项目一：电子商务平台',
-    description: '一个完整的电子商务解决方案，包含商品展示、购物车、支付系统等功能。',
+    title: '便易借',
+    description: '一个完整的电子设备借用方案，包含设备展示、借用&归还、设备详情等功能。',
     imageUrl: '/images/project-placeholder.png',
     projectUrl: '#',
-    tags: ['Vue 3', 'Element Plus', 'Node.js']
+    tags: ['Java', 'Element Plus']
   },
   {
     id: 'proj2',
-    title: '特色项目二：智能任务管理器',
-    description: '一款帮助用户高效管理日常任务和项目的应用。界面简洁，交互流畅，支持多平台同步。',
+    title: '个人博客',
+    description: '一个本地的个人网站，记录学习经验，借助Github存储代码。界面简洁，交互流畅。',
     imageUrl: '/images/project-placeholder.png',
     projectUrl: '#',
-    tags: ['Pinia', 'Axios', '响应式设计']
+    tags: ['Github', 'Hexo']
   }
-  // 可以添加更多项目
 ])
 
 function navigateTo(routeName) {
@@ -53,7 +52,7 @@ function navigateTo(routeName) {
             <el-icon style="margin-right: 8px;">
               <CollectionTag />
             </el-icon>
-            探索我的作品
+            探索我的项目
           </el-button>
           <el-button size="large" @click="navigateTo('Contact')" round plain>
             <el-icon style="margin-right: 8px;">
@@ -69,8 +68,8 @@ function navigateTo(routeName) {
       <div class="container text-center">
         <h2 class="section-title">关于我</h2>
         <p class="section-paragraph">
-          我是一名热衷于构建美观且用户友好的 Web 应用的开发者。拥有 X 年前端开发经验，擅长 Vue.js 生态系统、响应式设计和性能优化。
-          我坚信技术能够改变世界，并乐于学习和探索新的技术趋势。
+          我是一名正在不断学习成长的全栈开发者。
+          我坚信活到老学到老，并乐于学习和探索新的技术趋势。
         </p>
         <el-button type="primary" plain @click="navigateTo('About')">了解更多关于我</el-button>
       </div>
@@ -78,7 +77,7 @@ function navigateTo(routeName) {
 
     <section class="featured-projects-section section-padding bg-light">
       <div class="container">
-        <h2 class="section-title text-center">特色项目</h2>
+        <h2 class="section-title text-center">项目展示</h2>
         <el-row :gutter="30">
           <el-col v-for="project in featuredProjects" :key="project.id" :xs="24" :sm="12" :md="8">
             <PortfolioItem :id="project.id" :title="project.title" :description="project.description"

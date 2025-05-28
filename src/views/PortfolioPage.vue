@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-// **** 关键修改：导入正确的组件 ****
 import PortfolioItem from '@/components/PortfolioItem.vue'
 
 const projects = ref([

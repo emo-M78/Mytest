@@ -3,10 +3,8 @@ import { ref, reactive } from 'vue';
 import { ElMessage, ElForm, ElInput, ElButton, ElRow, ElCol, ElFormItem, ElCard, ElIcon, ElLink, ElDivider } from 'element-plus'; // 按需导入 Element Plus 组件
 import { Message, Phone, Location, Promotion, User, Link as LinkIcon } from '@element-plus/icons-vue'; // 导入所需图标
 
-// 表单引用
 const contactFormRef = ref(null);
 
-// 表单数据模型
 const contactForm = reactive({
     name: '',
     email: '',
@@ -14,7 +12,6 @@ const contactForm = reactive({
     message: '',
 });
 
-// 表单验证规则
 const formRules = reactive({
     name: [{ required: true, message: '请输入您的姓名', trigger: 'blur' }],
     email: [
@@ -25,24 +22,17 @@ const formRules = reactive({
     message: [{ required: true, message: '请输入邮件内容', trigger: 'blur' }],
 });
 
-// 提交状态
 const isSubmitting = ref(false);
 
-// 联系信息 (请替换为您的真实信息)
 const contactInfo = reactive({
-    email: 'your.email@example.com',
-    phone: '+86 138 0013 8000',
-    address: '中国，北京市，某某区，某某街道123号',
-    // 社交链接示例 (请替换或添加您的链接)
-    // 使用 'icon' 属性存储导入的图标组件
+    email: 'vckt377602@Outlook.com',
+    phone: '+86 158 3078 1895',
+    address: '中国，石家庄市，灵寿县，河北省石家庄市灵寿县工业路99号',
     social: [
-        { name: 'GitHub', url: 'https://github.com/yourusername', icon: User }, // 使用导入的图标
-        { name: '个人网站', url: 'https://yourwebsite.com', icon: LinkIcon },
-        // 您可以添加更多社交链接...
+        { name: 'GitHub', url: 'https://github.com/emo-M78', icon: User },
     ]
 });
 
-// 表单提交处理
 const handleSubmit = async () => {
     const formEl = contactFormRef.value;
     if (!formEl) return;
@@ -51,14 +41,11 @@ const handleSubmit = async () => {
         if (valid) {
             isSubmitting.value = true;
             try {
-                // --- 在这里实现您的表单提交逻辑 ---
-                // 例如：使用 Axios 或 fetch 发送邮件或保存到后端
-                console.log('表单数据:', { ...contactForm }); // 使用展开运算符复制数据，避免直接修改
-                await new Promise(resolve => setTimeout(resolve, 1500)); // 模拟网络请求
+                console.log('表单数据:', { ...contactForm });
+                await new Promise(resolve => setTimeout(resolve, 1500));
 
                 ElMessage.success('感谢您的留言，我会尽快回复您！');
-                formEl.resetFields(); // 提交成功后重置表单
-                // --- 提交逻辑结束 ---
+                formEl.resetFields();
             } catch (error) {
                 console.error('提交失败:', error);
                 ElMessage.error('抱歉，留言发送失败，请稍后再试。');
@@ -71,7 +58,6 @@ const handleSubmit = async () => {
     });
 };
 
-// 重置表单 (可选，如果需要手动重置按钮)
 const resetForm = () => {
     contactFormRef.value?.resetFields();
 };
@@ -81,7 +67,7 @@ const resetForm = () => {
     <div class="contact-page container">
         <h1 class="page-title text-center">联系我</h1>
         <p class="page-intro text-center">
-            如果您有任何项目合作意向、技术交流或者只是想打个招呼，都非常欢迎通过以下方式联系我。
+            如果您有任何问题 & 技术交流或者只是想打个招呼，都非常欢迎通过以下方式联系我。<br>
             我期待与您的交流！
         </p>
 
@@ -134,7 +120,7 @@ const resetForm = () => {
                             <Message />
                         </el-icon>
                         <span><strong>邮箱:</strong> <el-link :href="`mailto:${contactInfo.email}`" target="_blank">{{
-                                contactInfo.email }}</el-link></span>
+                            contactInfo.email }}</el-link></span>
                     </div>
                     <div v-if="contactInfo.phone" class="info-item">
                         <el-icon>
@@ -153,7 +139,7 @@ const resetForm = () => {
                         v-if="contactInfo.social.length > 0 && (contactInfo.email || contactInfo.phone || contactInfo.address)" />
 
                     <div v-if="contactInfo.social.length > 0" class="social-links-contact">
-                        <p><strong>保持联系:</strong></p>
+                        <p><strong>项目交流:</strong></p>
                         <el-link v-for="social in contactInfo.social" :key="social.name" :href="social.url"
                             target="_blank" rel="noopener noreferrer" class="social-link-item" type="primary"
                             :underline="false">
@@ -192,13 +178,12 @@ const resetForm = () => {
 .page-intro {
     font-size: 1.1rem;
     color: #606266;
-    /* 稍微调整颜色增加对比度 */
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
     /* 增加与下方内容的间距 */
-    line-height: 1.8;
+    line-height: 2;
 }
 
 .section-subtitle {
@@ -207,45 +192,35 @@ const resetForm = () => {
     margin-bottom: 25px;
     font-weight: 500;
     border-bottom: 2px solid #409EFF;
-    /* 添加下划线突出 */
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     display: inline-block;
-    /* 使下划线只覆盖文本 */
 }
 
-/* 统一表单项间距 */
 .el-form-item {
-    margin-bottom: 22px;
+    margin-bottom: 25px;
 }
 
 .info-card {
     background-color: #f9fafc;
     border: 1px solid #e4e7ed;
-    /* 添加细边框 */
     border-radius: 8px;
     padding: 30px;
-    /* 增加内边距 */
     height: 100%;
-    /* 尝试让卡片高度与表单对齐 (可能需要JS或更复杂的CSS) */
 }
 
 .info-item {
     display: flex;
     align-items: center;
     margin-bottom: 18px;
-    /* 增加项目间距 */
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #606266;
 }
 
 .info-item .el-icon {
     margin-right: 12px;
-    /* 增加图标与文字间距 */
-    font-size: 1.3rem;
-    /* 增大图标 */
+    font-size: 1.5rem;
     color: #409EFF;
     flex-shrink: 0;
-    /* 防止图标被压缩 */
 }
 
 .info-item strong {
@@ -255,35 +230,27 @@ const resetForm = () => {
 
 .info-item .el-link {
     font-size: 1rem;
-    /* 确保链接文字大小一致 */
     vertical-align: middle;
-    /* 尝试垂直居中 */
 }
 
 
 .social-links-contact p {
-    margin-bottom: 15px;
-    /* 增加与链接的间距 */
+    margin-bottom: 20px;
     font-weight: bold;
     color: #303133;
 }
 
 .social-link-item {
     margin-right: 20px;
-    /* 增加链接间距 */
     margin-bottom: 10px;
     font-size: 1rem;
     display: inline-flex;
-    /* 使用 flex 布局 */
     align-items: center;
-    /* 垂直居中图标和文字 */
 }
 
 .social-icon {
     margin-right: 6px;
-    /* 图标与文字间距 */
     font-size: 1.1rem;
-    /* 图标大小 */
 }
 
 
@@ -293,7 +260,6 @@ const resetForm = () => {
 
 @media (max-width: 991px) {
 
-    /* md 断点 */
     .contact-info-section {
         margin-top: 40px;
     }

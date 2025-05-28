@@ -2,44 +2,38 @@
 import { ref, reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/modules/auth';
-import { ElMessage, ElCard, ElForm, ElFormItem, ElInput, ElButton, ElAlert, ElLink } from 'element-plus'; // 确保导入所有使用的组件
-
+import { ElMessage, ElCard, ElForm, ElFormItem, ElInput, ElButton, ElAlert, ElLink } from 'element-plus';
 const router = useRouter();
 const authStore = useAuthStore();
 
 const loginFormRef = ref(null);
 const loginForm = reactive({
-    username: '', // CUSTOMIZATION: 可以改为 email 或其他登录凭据字段
+    username: '',
     password: '',
 });
 
-// CUSTOMIZATION: 表单验证规则
 const loginRules = reactive({
     username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
     password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
 });
 
-// 使用 authStore 的 isLoading 状态，或者在这里维护一个本地状态
-// 如果 authStore.isLoading 是全局的，那么用它更好
-// const isLoading = ref(false); // 如果 authStore 中没有 isLoading，则使用本地的
+const isLoading = ref(false);
 
 const handleLogin = async (formEl) => {
     if (!formEl) return;
     await formEl.validate(async (valid) => {
         if (valid) {
-            // isLoading.value = true; // 如果使用本地 isLoading
+            isLoading.value = true;
             try {
                 await authStore.login({
                     username: loginForm.username,
                     password: loginForm.password,
                 });
-                // 登录成功后，authStore.login action 内部会处理跳转
                 ElMessage.success('登录成功！');
             } catch (error) {
-                // *** 已修复: 取消注释 ElMessage.error ***
                 ElMessage.error(authStore.loginError || '登录失败，请检查您的凭据。');
             } finally {
-                // isLoading.value = false; // 如果使用本地 isLoading
+                isLoading.value = false;
             }
         } else {
             ElMessage.error('请检查表单输入项。');
@@ -49,14 +43,13 @@ const handleLogin = async (formEl) => {
 };
 
 function goToRegister() {
-    router.push({ name: 'Register' }); // 确保您有 'Register' 路由
+    router.push({ name: 'Register' });
 }
 
-// 组件挂载时检查认证状态，如果已登录则跳转
 onMounted(() => {
     if (authStore.isAuthenticated) {
         ElMessage.info('您已登录，将跳转到首页。');
-        router.replace({ name: 'Home' }); // 如果已登录，重定向到首页
+        router.replace({ name: 'Home' });
     }
 });
 </script>
@@ -98,32 +91,21 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 128px);
-    /* 减去页眉页脚大致高度 (需要根据您的实际布局调整) */
+    min-height: calc(95vh - 128px);
     padding: 20px;
     background-color: #f0f2f5;
-    /* 背景色 */
 }
 
 .auth-card {
     width: 100%;
-    max-width: 400px;
+    max-width: 430px;
     border-radius: 8px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    /* 添加一点阴影 */
-}
-
-.el-card__header {
-    /* 注意：这样选择器可能不会生效，因为 el-card__header 是内部元素，最好通过 :deep() 或全局样式修改 */
-    font-size: 1.5rem;
-    text-align: center;
-    font-weight: 500;
 }
 
 .form-footer {
     margin-top: 20px;
     text-align: center;
-    /* 确保居中 */
 }
 
 .form-footer p {
@@ -135,5 +117,3 @@ onMounted(() => {
     margin-bottom: 22px;
 }
 </style>
-
----

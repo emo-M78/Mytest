@@ -24,17 +24,11 @@ function goHome() {
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 128px);
-    /* 减去页眉页脚大致高度 */
     padding: 20px;
-}
-
-.el-result {
-    /* CUSTOMIZATION: 调整 ElementPlus Result 组件的样式 */
 }
 
 .not-found-image {
     max-width: 300px;
-    /* CUSTOMIZATION: 404插图的最大宽度 */
     margin-top: 30px;
 }
 </style>
