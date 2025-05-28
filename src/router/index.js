@@ -18,7 +18,12 @@ const router = createRouter({
     {
       path: '/portfolio',
       name: 'Portfolio',
-      component: () => import('../components/PortfolioItem.vue')
+      component: () => import('../views/PortfolioPage.vue')
+    },
+    {
+      path: '/portfolio/:id',
+      name: 'ProjectDetail',
+      component: () => import('../views/ProjectDetailPage.vue'),
     },
     {
       path: '/contact',
@@ -43,30 +48,29 @@ const router = createRouter({
       component: () => import('../views/NotFoundPage.vue')
     }
   ],
-  //   // CUSTOMIZATION: 可以添加 scrollBehavior 来自定义路由切换时的滚动行为
-  //   scrollBehavior(to, from, savedPosition) {
-  //     if (savedPosition) {
-  //       return savedPosition
-  //     } else {
-  //       return { top: 0, behavior: 'smooth' } // 切换路由时平滑滚动到页面顶部
-  //     }
-  //   }
+
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0, behavior: 'smooth' }
+    }
+  }
 })
 
-// // CUSTOMIZATION: 导航守卫示例 (例如，如果已登录则重定向离开登录页)
-// router.beforeEach((to, from, next) => {
-//   const authStore = useAuthStore(); // 确保在 Pinia 初始化后使用
-//   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-//     next({ name: 'Login' });
-//   } else if (to.meta.requiresGuest && authStore.isAuthenticated) {
-//     next({ name: 'Home' });
-//   } else {
-//     next();
-//   }
-//   console.log(`Navigating FROM: ${from.fullPath} (isAuthenticated: ${useAuthStore().isAuthenticated})`);
-//   console.log(`Navigating TO: ${to.fullPath} (meta: ${JSON.stringify(to.meta)})`);
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    next({ name: 'Login' });
+  } else if (to.meta.requiresGuest && authStore.isAuthenticated) {
+    next({ name: 'Home' });
+  } else {
+    next();
+  }
+  console.log(`Navigating FROM: ${from.fullPath} (isAuthenticated: ${useAuthStore().isAuthenticated})`);
+  console.log(`Navigating TO: ${to.fullPath} (meta: ${JSON.stringify(to.meta)})`);
 
-// });
+});
 
 export default router
 

@@ -69,7 +69,7 @@ const handleRegister = async (formEl) => {
                     email: registerForm.email,
                     password: registerForm.password,
                 });
-                ElMessage.success('注册成功！将跳转到登录页。');
+                // ElMessage.success('注册成功！将跳转到登录页。');
                 router.push({ name: 'Login' });
             } catch (error) {
                 ElMessage.error(authStore.registrationError || '注册失败，请稍后再试。');

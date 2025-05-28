@@ -1,6 +1,10 @@
 <script setup>
-// 定义这个组件接收哪些属性 (props)
-defineProps({
+import { useRouter } from 'vue-router' // 导入 useRouter
+
+const router = useRouter() // 获取 router 实例
+
+// 定义 props (保持不变)
+const props = defineProps({
     id: String,
     title: String,
     description: String,
@@ -8,6 +12,14 @@ defineProps({
     projectUrl: String,
     tags: Array
 })
+
+// 定义跳转函数
+function viewDetails() {
+    router.push({
+        name: 'ProjectDetail', // 使用我们定义的路由名字
+        params: { id: props.id } // 传递项目 id 作为参数
+    })
+}
 </script>
 
 <template>
@@ -23,14 +35,24 @@ defineProps({
                         {{ tag }}
                     </el-tag>
                 </div>
-                <el-button type="primary" link :href="projectUrl" target="_blank" class="button">查看详情</el-button>
+                <el-button type="primary" link @click="viewDetails" class="button">
+                    查看详情
+                </el-button>
             </div>
         </div>
     </el-card>
 </template>
 
 <style scoped>
+/* 样式保持不变 */
+.portfolio-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
 .portfolio-item-card {
+    transition: all 0.3s ease-in-out;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -53,12 +75,10 @@ defineProps({
 
 .bottom {
     margin-top: 13px;
-    line-height: 12px;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
+    flex-direction: column;
     flex-grow: 1;
+    justify-content: space-between;
 }
 
 .tags {

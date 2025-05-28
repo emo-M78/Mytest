@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import PortfolioItem from '@/components/PortfolioItem.vue'
 import { CollectionTag, ChatDotRound } from '@element-plus/icons-vue'
+import { projects } from '@/data/projects.js'
+import { computed } from 'vue'
 
 const router = useRouter()
 
@@ -13,24 +15,8 @@ const personalInfo = ref({
   heroImageUrl: '/images/hero-placeholder.jpg'
 })
 
-const featuredProjects = ref([
-  {
-    id: 'proj1',
-    title: '便易借',
-    description: '一个完整的电子设备借用方案，包含设备展示、借用&归还、设备详情等功能。',
-    imageUrl: '/images/project-placeholder.png',
-    projectUrl: '#',
-    tags: ['Java', 'Element Plus']
-  },
-  {
-    id: 'proj2',
-    title: '个人博客',
-    description: '一个本地的个人网站，记录学习经验，借助Github存储代码。界面简洁，交互流畅。',
-    imageUrl: '/images/project-placeholder.png',
-    projectUrl: '#',
-    tags: ['Github', 'Hexo']
-  }
-])
+const featuredProjects = computed(() => projects.value.slice(0, 3)); // 例如，只取前 3 个作为特色项目
+
 
 function navigateTo(routeName) {
   router.push({ name: routeName })

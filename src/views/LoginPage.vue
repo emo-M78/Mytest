@@ -60,7 +60,7 @@ onMounted(() => {
             <el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" label-position="top"
                 @submit.prevent="handleLogin(loginFormRef)">
                 <el-form-item label="用户名" prop="username">
-                    <el-input v-model="loginForm.username" placeholder="请输入用户名或邮箱" clearable />
+                    <el-input v-model="loginForm.username" placeholder="请输入用户名" clearable />
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
                     <el-input v-model="loginForm.password" type="password" placeholder="请输入密码" show-password clearable
