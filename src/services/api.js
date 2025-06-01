@@ -50,7 +50,6 @@ apiClient.interceptors.response.use(
     }
 );
 
-// 模拟用户数据库
 const mockUsers = [
     { id: 1, username: 'testuser', email: 'testuser@example.com', password: 'password123' /* 实际项目中密码应哈希存储 */ }
 ];
@@ -111,11 +110,8 @@ export default {
                 });
             }, 1000);
         });
-        // 真实 API 调用示例:
-        // return apiClient.post('/auth/register', userData);
     },
 
-    // === 获取作品集数据 (示例) ===
     getPortfolioProjects() {
         console.warn('正在使用模拟获取作品集 API。');
         return new Promise((resolve) => {
@@ -145,16 +141,5 @@ export default {
                 });
             }, 1200);
         });
-        // 真实 API 调用示例:
-        // return apiClient.post('/contact', formData);
     }
-
-    // CUSTOMIZATION: 根据您的后端 API 设计，添加更多方法
-    // 例如：获取用户信息、更新用户信息等
-    // getUserProfile() {
-    //   return apiClient.get('/users/me');
-    // },
 };
-
-// 您也可以选择导出 apiClient 实例，以便在需要时直接使用
-// export { apiClient };

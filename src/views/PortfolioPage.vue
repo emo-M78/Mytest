@@ -4,33 +4,34 @@ import { projects } from '@/data/projects.js'
 </script>
 
 <template>
-    <div class="portfolio-page container">
-        <h1 class="page-title text-center">我的作品集</h1>
-        <p class="page-intro text-center">
-            这里展示了我参与完成的一些项目。
-            每一个项目都代表了我在特定阶段的学习成果和技术实践。<br>
-            欢迎浏览，并随时与我联系交流！
-        </p>
-        <el-row :gutter="30">
-            <el-col v-for="project in projects" :key="project.id" :xs="24" :sm="12" :md="8"
-                style="margin-bottom: 30px;">
-                <PortfolioItem :id="project.id" :title="project.title" :description="project.description"
-                    :image-url="project.imageUrl" :project-url="project.projectUrl" :tags="project.tags" />
-            </el-col>
-        </el-row>
+    <div class="main-wrapper">
+        <div class="portfolio-page container">
+            <h1 class="page-title text-center">我的作品集</h1>
+            <p class="page-intro text-center">
+                这里展示了我参与完成的一些项目。
+                每一个项目都代表了我在特定阶段的学习成果和技术实践。<br>
+                欢迎浏览，并随时与我联系交流！
+            </p>
+            <el-row :gutter="30">
+                <el-col v-for="project in projects" :key="project.id" :xs="24" :sm="12" :md="8"
+                    style="margin-bottom: 30px;">
+                    <PortfolioItem :id="project.id" :title="project.title" :description="project.description"
+                        :image-url="project.imageUrl" :project-url="project.projectUrl" :tags="project.tags" />
+                </el-col>
+            </el-row>
 
-        <div v-if="projects.length === 0" class="empty-state text-center">
-            <el-empty description="暂无项目展示，敬请期待！" />
+            <div v-if="projects.length === 0" class="empty-state text-center">
+                <el-empty description="暂无项目展示，敬请期待！" />
+            </div>
         </div>
     </div>
-
 
 </template>
 
 <style scoped>
 .portfolio-page {
-    padding-top: 30px;
-    padding-bottom: 50px;
+    padding: 30px 20px 50px 20px;
+    height: 100%;
 }
 
 .page-title {

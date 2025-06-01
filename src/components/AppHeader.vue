@@ -11,7 +11,7 @@ const currentUser = computed(() => authStore.currentUser)
 
 const navLinks = [
   { name: 'Home', text: '首页' },
-  { name: 'Portfolio', text: '作品集' },
+  { name: 'Portfolio', text: '项目' },
   { name: 'About', text: '关于' },
   { name: 'Contact', text: '联系' }
 ]
@@ -59,6 +59,8 @@ const activeIndex = computed(() => router.currentRoute.value.name || 'Home')
   width: 100%;
   height: 100%;
   padding: 0 20px;
+  /* background-color: #8b95a2; */
+  background-image: linear-gradient(150deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .logo {
@@ -70,7 +72,7 @@ const activeIndex = computed(() => router.currentRoute.value.name || 'Home')
 }
 
 .logo:hover {
-  color: #409EFF;
+  color: #aed731;
 }
 
 .el-menu-nav {
@@ -78,6 +80,7 @@ const activeIndex = computed(() => router.currentRoute.value.name || 'Home')
   margin-left: auto;
   background-color: transparent !important;
 }
+
 
 :deep(.el-menu-item),
 :deep(.el-sub-menu__title) {
@@ -91,19 +94,17 @@ const activeIndex = computed(() => router.currentRoute.value.name || 'Home')
 :deep(.el-menu-item:hover),
 :deep(.el-sub-menu__title:hover) {
   background-color: #ecf5ff !important;
-  color: #409EFF !important;
+  color: #ff5940 !important;
 }
 
 :deep(.el-menu-item.is-active) {
-  color: #409EFF !important;
-  border-bottom: 2px solid #409EFF !important;
+  border-bottom: 2px solid #dcff40 !important;
 }
 
 .username {
   padding: 0 10px;
 }
 
-/* 响应式设计 */
 @media (max-width: 768px) {
   .app-header-content {
     flex-direction: column;

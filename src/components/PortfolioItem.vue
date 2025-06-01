@@ -1,9 +1,8 @@
 <script setup>
-import { useRouter } from 'vue-router' // 导入 useRouter
+import { useRouter } from 'vue-router'
 
-const router = useRouter() // 获取 router 实例
+const router = useRouter()
 
-// 定义 props (保持不变)
 const props = defineProps({
     id: String,
     title: String,
@@ -13,11 +12,10 @@ const props = defineProps({
     tags: Array
 })
 
-// 定义跳转函数
 function viewDetails() {
     router.push({
-        name: 'ProjectDetail', // 使用我们定义的路由名字
-        params: { id: props.id } // 传递项目 id 作为参数
+        name: 'ProjectDetail',
+        params: { id: props.id }
     })
 }
 </script>
@@ -44,11 +42,11 @@ function viewDetails() {
 </template>
 
 <style scoped>
-/* 样式保持不变 */
 .portfolio-item-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-20px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease-in-out;
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 }
 
 .portfolio-item-card {

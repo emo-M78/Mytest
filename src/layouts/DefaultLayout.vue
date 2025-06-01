@@ -21,7 +21,7 @@ import AppFooter from '@/components/AppFooter.vue'
 
 <style scoped>
 .default-layout {
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -38,8 +38,9 @@ import AppFooter from '@/components/AppFooter.vue'
 
 .layout-main {
   flex: 1 0 auto;
-  padding: 20px;
+  padding: 0px;
   background-color: #f4f6f8;
+  flex-grow: 1;
 }
 
 .layout-footer {

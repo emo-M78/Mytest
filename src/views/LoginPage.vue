@@ -55,34 +55,37 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="auth-page">
-        <el-card class="auth-card" header="用户登录">
-            <el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" label-position="top"
-                @submit.prevent="handleLogin(loginFormRef)">
-                <el-form-item label="用户名" prop="username">
-                    <el-input v-model="loginForm.username" placeholder="请输入用户名" clearable />
-                </el-form-item>
-                <el-form-item label="密码" prop="password">
-                    <el-input v-model="loginForm.password" type="password" placeholder="请输入密码" show-password clearable
-                        @keyup.enter="handleLogin(loginFormRef)" />
-                </el-form-item>
+    <div class="main-wrapper">
+        <div class="auth-page">
+            <el-card class="auth-card" header="用户登录">
+                <el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" label-position="top"
+                    @submit.prevent="handleLogin(loginFormRef)">
+                    <el-form-item label="用户名" prop="username">
+                        <el-input v-model="loginForm.username" placeholder="请输入用户名" clearable />
+                    </el-form-item>
+                    <el-form-item label="密码" prop="password">
+                        <el-input v-model="loginForm.password" type="password" placeholder="请输入密码" show-password
+                            clearable @keyup.enter="handleLogin(loginFormRef)" />
+                    </el-form-item>
 
-                <el-alert v-if="authStore.loginError" :title="authStore.loginError" type="error" show-icon
-                    :closable="false" style="margin-bottom: 20px;" />
+                    <el-alert v-if="authStore.loginError" :title="authStore.loginError" type="error" show-icon
+                        :closable="false" style="margin-bottom: 20px;" />
 
-                <el-form-item>
-                    <el-button type="primary" native-type="submit" :loading="authStore.isLoading" style="width: 100%;">
-                        {{ authStore.isLoading ? '登录中...' : '登 录' }}
-                    </el-button>
-                </el-form-item>
-            </el-form>
-            <div class="form-footer text-center">
-                <p>
-                    还没有账户？
-                    <el-link type="primary" @click="goToRegister">立即注册</el-link>
-                </p>
-            </div>
-        </el-card>
+                    <el-form-item>
+                        <el-button type="primary" native-type="submit" :loading="authStore.isLoading"
+                            style="width: 100%;">
+                            {{ authStore.isLoading ? '登录中...' : '登 录' }}
+                        </el-button>
+                    </el-form-item>
+                </el-form>
+                <div class="form-footer text-center">
+                    <p>
+                        还没有账户？
+                        <el-link type="primary" @click="goToRegister">立即注册</el-link>
+                    </p>
+                </div>
+            </el-card>
+        </div>
     </div>
 </template>
 
@@ -93,7 +96,7 @@ onMounted(() => {
     align-items: center;
     min-height: calc(95vh - 128px);
     padding: 20px;
-    background-color: #f0f2f5;
+    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
 }
 
 .auth-card {

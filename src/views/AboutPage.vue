@@ -4,7 +4,7 @@ import { Message, Link, School, Calendar } from '@element-plus/icons-vue'
 
 const profile = ref({
   name: '范杰',
-  title: '24P1120108054',
+  title: '学号：24P1120108054',
   bio: `你好！
   我是一名河北工程技术学院人工智能学院的学生，目前正在学习课程有：
   📌VUE应用程序开发
@@ -15,14 +15,16 @@ const profile = ref({
   📌Android系统应用开发
   📌单片机原理及应用（STM32）
 
-  我对前端用户界面设计以及后端技术开发有浓厚的兴趣，为此不断学习和拓展技术池，在此期间跟随老师的指导独立完成多个项目。
-  我乐于接受挑战，并享受通过技术解决实际问题的过程。除了编码，我还喜欢听音乐，打羽毛球，玩游戏和探索新的城市。我相信生活中的多样体验能够激发创造力，并帮助我从不同角度看待问题。
+  我对前端用户界面设计与后端技术开发抱有浓厚兴趣，始终在不断学习以拓展技术能力，期间在老师的指导下独立完成了多个项目。\
+  我乐于迎接挑战，也享受运用技术解决实际问题的过程。在编码之外，我还有着广泛的兴趣爱好，喜欢听音乐、打羽毛球、玩游戏，
+  也热衷于探索新的城市。
+  我坚信，生活中丰富多样的体验能够激发创造力，帮助我从不同视角看待问题，为技术开发与设计工作带来更多灵感
   `,
   project: `这是我的VUE课程期末考核项目。虽然当前版本功能相对基础，但它真实记录了我作为前端开发初学者的成长足迹。正如代码会不断迭代升级，我也在持续学习和精进技术。
 
-这个项目凝聚了我对VUE框架的理解与实践，每个组件都见证着我的进步。非常荣幸能向您展示这个阶段性的学习成果，期待能与您深入交流前端开发的乐趣与挑战！
+  这个项目展示了我对VUE框架的理解与实践，每个组件都见证着我的进步。非常荣幸能向您展示这个阶段性的学习成果，期待能与您深入交流前端开发的乐趣与挑战！
 `,
-  imageUrl: '/images/profile-placeholder.jpg',
+  imageUrl: '/images/Me.jpg',
   email: 'vckt377602@Outlook.com',
   github: 'https://github.com/emo-M78'
 })
@@ -32,8 +34,8 @@ const skills = ref([
   { name: 'Linux', level: 80, category: '操作系统' },
   { name: 'JavaScript', level: 78, category: '编程语言' },
   { name: 'Python', level: 50, category: '编程语言' },
-  { name: 'CSS/SCSS', level: 85, category: '样式设计' },
-  { name: 'UI/UX设计', level: 75, category: '设计技能' }
+  { name: 'CSS/SCSS', level: 75, category: '样式设计' },
+  { name: 'UI设计', level: 50, category: '设计技能' }
 ])
 
 const experiences = ref([
@@ -87,80 +89,82 @@ const educations = ref([
 </script>
 
 <template>
-  <div class="about-page container">
-    <el-row :gutter="40" class="profile-section">
-      <el-col :xs="24" :sm="8" :md="6" class="text-center">
-        <el-avatar :size="150" :src="profile.imageUrl" class="profile-avatar">
-          {{ profile.name.charAt(0) }}
-        </el-avatar>
-        <h1 class="profile-name">{{ profile.name }}</h1>
-        <p class="profile-title">{{ profile.title }}</p>
-        <div class="profile-contact">
-          <el-link :href="`mailto:${profile.email}`" target="_blank" :icon="Message">邮箱</el-link>
-          <el-link :href="profile.github" target="_blank" :icon="Link">GitHub</el-link>
-        </div>
-      </el-col>
-      <el-col :xs="24" :sm="16" :md="18">
-        <h2 class="section-heading">关于我</h2>
-        <p class="bio-text" v-html="profile.bio.replace(/\n/g, '<br>')"></p>
-        <hr style="margin: 15px; height: 1px; border: none; background-color: black;">
-        <h2 class="section-heading">关于此项目</h2>
-        <p class="bio-text" v-html="profile.project.replace(/\n/g, '<br>')"></p>
-      </el-col>
-    </el-row>
-
-    <el-divider />
-
-    <section class="skills-section">
-      <h2 class="section-heading text-center">专业技能</h2>
-      <el-row :gutter="20">
-        <el-col :xs="24" :sm="12" :md="8" v-for="skill in skills" :key="skill.name" class="skill-item">
-          <el-card shadow="hover">
-            <div class="skill-name">{{ skill.name }}</div>
-            <el-progress :percentage="skill.level" :stroke-width="10" striped striped-flow />
-            <div class="skill-category">{{ skill.category }}</div>
-          </el-card>
+  <div style="background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%, #accbee 0%);">
+    <div class="about-page container">
+      <el-row :gutter="40" class="profile-section">
+        <el-col :xs="24" :sm="8" :md="6" class="text-center">
+          <el-avatar :size="150" :src="profile.imageUrl" class="profile-avatar">
+            {{ profile.name.charAt(0) }}
+          </el-avatar>
+          <h1 class="profile-name">{{ profile.name }}</h1>
+          <p class="profile-title">{{ profile.title }}</p>
+          <div class="profile-contact">
+            <el-link :href="`mailto:${profile.email}`" target="_blank" :icon="Message">邮箱</el-link>
+            <el-link :href="profile.github" target="_blank" :icon="Link">GitHub</el-link>
+          </div>
+        </el-col>
+        <el-col :xs="24" :sm="16" :md="18">
+          <h2 class="section-heading">关于我</h2>
+          <p class="bio-text" v-html="profile.bio.replace(/\n/g, '<br>')"></p>
+          <hr style="margin: 15px; height: 1px; border: none; background-color: black;">
+          <h2 class="section-heading">关于此项目</h2>
+          <p class="bio-text" v-html="profile.project.replace(/\n/g, '<br>')"></p>
         </el-col>
       </el-row>
-    </section>
 
-    <el-divider />
+      <el-divider />
 
-    <section class="experience-section">
-      <h2 class="section-heading text-center">项目经历</h2>
-      <el-timeline>
-        <el-timeline-item v-for="exp in experiences" :key="exp.id" :timestamp="exp.period" placement="top"
-          type="primary" hollow>
-          <el-card>
-            <h4>{{ exp.title }} --@ {{ exp.company }}</h4>
-            <p>{{ exp.description }}</p>
-            <ul v-if="exp.responsibilities && exp.responsibilities.length > 0" class="responsibilities-list">
-              <li v-for="(resp, index) in exp.responsibilities" :key="index">{{ resp }}</li>
-            </ul>
+      <section class="skills-section">
+        <h2 class="section-heading text-center">专业技能</h2>
+        <el-row :gutter="20">
+          <el-col :xs="24" :sm="12" :md="8" v-for="skill in skills" :key="skill.name" class="skill-item">
+            <el-card shadow="hover">
+              <div class="skill-name">{{ skill.name }}</div>
+              <el-progress :percentage="skill.level" :stroke-width="10" striped striped-flow />
+              <div class="skill-category">{{ skill.category }}</div>
+            </el-card>
+          </el-col>
+        </el-row>
+      </section>
+
+      <el-divider />
+
+      <section class="experience-section">
+        <h2 class="section-heading text-center">项目经历</h2>
+        <el-timeline>
+          <el-timeline-item v-for="exp in experiences" :key="exp.id" :timestamp="exp.period" placement="top"
+            type="primary" hollow>
+            <el-card>
+              <h4>{{ exp.title }} --@ {{ exp.company }}</h4>
+              <p>{{ exp.description }}</p>
+              <ul v-if="exp.responsibilities && exp.responsibilities.length > 0" class="responsibilities-list">
+                <li v-for="(resp, index) in exp.responsibilities" :key="index">{{ resp }}</li>
+              </ul>
+            </el-card>
+          </el-timeline-item>
+        </el-timeline>
+      </section>
+
+      <el-divider />
+
+      <section class="education-section">
+        <h2 class="section-heading text-center">教育背景</h2>
+        <div class="education-items">
+          <el-card v-for="edu in educations" :key="edu.id" class="education-card" shadow="never">
+            <h4>{{ edu.degree }}</h4>
+            <p class="institution-period">
+              <el-icon>
+                <School />
+              </el-icon> {{ edu.institution }} |
+              <el-icon>
+                <Calendar />
+              </el-icon> {{ edu.period }}
+            </p>
+            <p>{{ edu.description }}</p>
           </el-card>
-        </el-timeline-item>
-      </el-timeline>
-    </section>
-
-    <el-divider />
-
-    <section class="education-section">
-      <h2 class="section-heading text-center">教育背景</h2>
-      <div class="education-items">
-        <el-card v-for="edu in educations" :key="edu.id" class="education-card" shadow="never">
-          <h4>{{ edu.degree }}</h4>
-          <p class="institution-period">
-            <el-icon>
-              <School />
-            </el-icon> {{ edu.institution }} |
-            <el-icon>
-              <Calendar />
-            </el-icon> {{ edu.period }}
-          </p>
-          <p>{{ edu.description }}</p>
-        </el-card>
-      </div>
-    </section>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -173,6 +177,7 @@ const educations = ref([
 .profile-section {
   margin-bottom: 40px;
   align-items: center;
+  padding: 20px;
 }
 
 .profile-avatar {
@@ -236,7 +241,7 @@ const educations = ref([
 .experience-section,
 .education-section {
   margin-bottom: 40px;
-  padding-top: 20px;
+  padding: 20px;
 }
 
 .skill-item {

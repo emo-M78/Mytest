@@ -1,10 +1,8 @@
-### RegisterPage.vue (注册页面)
-
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/modules/auth';
-import { ElMessage, ElCard, ElForm, ElFormItem, ElInput, ElButton, ElAlert, ElLink } from 'element-plus'; // 确保导入所有使用的组件
+import { ElMessage, ElCard, ElForm, ElFormItem, ElInput, ElButton, ElAlert, ElLink } from 'element-plus';
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -132,9 +130,9 @@ function goToLogin() {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 128px);
+    min-height: calc(101vh - 128px);
     padding: 20px;
-    background-color: #f0f2f5;
+    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
 }
 
 .auth-card {

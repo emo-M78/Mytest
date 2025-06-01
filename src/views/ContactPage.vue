@@ -1,7 +1,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { ElMessage, ElForm, ElInput, ElButton, ElRow, ElCol, ElFormItem, ElCard, ElIcon, ElLink, ElDivider } from 'element-plus'; // 按需导入 Element Plus 组件
-import { Message, Phone, Location, Promotion, User, Link as LinkIcon } from '@element-plus/icons-vue'; // 导入所需图标
+import { Message, Phone, Location, Promotion, User, Link as LinkIcon } from '@element-plus/icons-vue';
 
 const contactFormRef = ref(null);
 
@@ -64,95 +64,97 @@ const resetForm = () => {
 </script>
 
 <template>
-    <div class="contact-page container">
-        <h1 class="page-title text-center">联系我</h1>
-        <p class="page-intro text-center">
-            如果您有任何问题 & 技术交流或者只是想打个招呼，都非常欢迎通过以下方式联系我。<br>
-            我期待与您的交流！
-        </p>
+    <div class="main-wrapper">
+        <div class="contact-page container">
+            <h1 class="page-title text-center">联系我</h1>
+            <p class="page-intro text-center">
+                如果您有任何问题 & 技术交流或者只是想打个招呼，都非常欢迎通过以下方式联系我。<br>
+                我期待与您的交流！
+            </p>
 
-        <el-row :gutter="50">
-            <el-col :xs="24" :md="12" class="contact-form-section">
-                <h2 class="section-subtitle">发送消息给我</h2>
-                <el-form ref="contactFormRef" :model="contactForm" :rules="formRules" label-position="top"
-                    @submit.prevent="handleSubmit">
-                    <el-form-item label="您的姓名" prop="name">
-                        <el-input v-model.trim="contactForm.name" placeholder="例如：张三" clearable>
-                            <template #prefix>
-                                <el-icon>
-                                    <User />
+            <el-row :gutter="50">
+                <el-col :xs="24" :md="12" class="contact-form-section">
+                    <h2 class="section-subtitle">发送消息给我</h2>
+                    <el-form ref="contactFormRef" :model="contactForm" :rules="formRules" label-position="top"
+                        @submit.prevent="handleSubmit">
+                        <el-form-item label="您的姓名" prop="name">
+                            <el-input v-model.trim="contactForm.name" placeholder="例如：张三" clearable>
+                                <template #prefix>
+                                    <el-icon>
+                                        <User />
+                                    </el-icon>
+                                </template>
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="您的邮箱" prop="email">
+                            <el-input v-model.trim="contactForm.email" placeholder="例如：zhangsan@example.com" clearable>
+                                <template #prefix>
+                                    <el-icon>
+                                        <Message />
+                                    </el-icon>
+                                </template>
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="主题" prop="subject">
+                            <el-input v-model.trim="contactForm.subject" placeholder="例如：关于项目合作的咨询" clearable />
+                        </el-form-item>
+                        <el-form-item label="内容" prop="message">
+                            <el-input v-model="contactForm.message" type="textarea" :rows="5"
+                                placeholder="请在此处输入您的留言内容..." show-word-limit maxlength="500" />
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" native-type="submit" :loading="isSubmitting" style="width: 100%;">
+                                <el-icon style="margin-right: 5px;" v-if="!isSubmitting">
+                                    <Promotion />
                                 </el-icon>
-                            </template>
-                        </el-input>
-                    </el-form-item>
-                    <el-form-item label="您的邮箱" prop="email">
-                        <el-input v-model.trim="contactForm.email" placeholder="例如：zhangsan@example.com" clearable>
-                            <template #prefix>
-                                <el-icon>
-                                    <Message />
+                                {{ isSubmitting ? '发送中...' : '发送留言' }}
+                            </el-button>
+                        </el-form-item>
+                    </el-form>
+                </el-col>
+
+                <el-col :xs="24" :md="12" class="contact-info-section">
+                    <h2 class="section-subtitle">其他联系方式</h2>
+                    <el-card shadow="never" class="info-card">
+                        <div v-if="contactInfo.email" class="info-item">
+                            <el-icon>
+                                <Message />
+                            </el-icon>
+                            <span><strong>邮箱:</strong> <el-link :href="`mailto:${contactInfo.email}`" target="_blank">{{
+                                contactInfo.email }}</el-link></span>
+                        </div>
+                        <div v-if="contactInfo.phone" class="info-item">
+                            <el-icon>
+                                <Phone />
+                            </el-icon>
+                            <span><strong>电话:</strong> {{ contactInfo.phone }}</span>
+                        </div>
+                        <div v-if="contactInfo.address" class="info-item">
+                            <el-icon>
+                                <Location />
+                            </el-icon>
+                            <span><strong>地址:</strong> {{ contactInfo.address }}</span>
+                        </div>
+
+                        <el-divider
+                            v-if="contactInfo.social.length > 0 && (contactInfo.email || contactInfo.phone || contactInfo.address)" />
+
+                        <div v-if="contactInfo.social.length > 0" class="social-links-contact">
+                            <p><strong>项目交流:</strong></p>
+                            <el-link v-for="social in contactInfo.social" :key="social.name" :href="social.url"
+                                target="_blank" rel="noopener noreferrer" class="social-link-item" type="primary"
+                                :underline="false">
+                                <el-icon v-if="social.icon" class="social-icon">
+                                    <component :is="social.icon" />
                                 </el-icon>
-                            </template>
-                        </el-input>
-                    </el-form-item>
-                    <el-form-item label="主题" prop="subject">
-                        <el-input v-model.trim="contactForm.subject" placeholder="例如：关于项目合作的咨询" clearable />
-                    </el-form-item>
-                    <el-form-item label="内容" prop="message">
-                        <el-input v-model="contactForm.message" type="textarea" :rows="5" placeholder="请在此处输入您的留言内容..."
-                            show-word-limit maxlength="500" />
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button type="primary" native-type="submit" :loading="isSubmitting" style="width: 100%;">
-                            <el-icon style="margin-right: 5px;" v-if="!isSubmitting">
-                                <Promotion />
-                            </el-icon>
-                            {{ isSubmitting ? '发送中...' : '发送留言' }}
-                        </el-button>
-                    </el-form-item>
-                </el-form>
-            </el-col>
+                                {{ social.name }}
+                            </el-link>
+                        </div>
+                    </el-card>
 
-            <el-col :xs="24" :md="12" class="contact-info-section">
-                <h2 class="section-subtitle">其他联系方式</h2>
-                <el-card shadow="never" class="info-card">
-                    <div v-if="contactInfo.email" class="info-item">
-                        <el-icon>
-                            <Message />
-                        </el-icon>
-                        <span><strong>邮箱:</strong> <el-link :href="`mailto:${contactInfo.email}`" target="_blank">{{
-                            contactInfo.email }}</el-link></span>
-                    </div>
-                    <div v-if="contactInfo.phone" class="info-item">
-                        <el-icon>
-                            <Phone />
-                        </el-icon>
-                        <span><strong>电话:</strong> {{ contactInfo.phone }}</span>
-                    </div>
-                    <div v-if="contactInfo.address" class="info-item">
-                        <el-icon>
-                            <Location />
-                        </el-icon>
-                        <span><strong>地址:</strong> {{ contactInfo.address }}</span>
-                    </div>
-
-                    <el-divider
-                        v-if="contactInfo.social.length > 0 && (contactInfo.email || contactInfo.phone || contactInfo.address)" />
-
-                    <div v-if="contactInfo.social.length > 0" class="social-links-contact">
-                        <p><strong>项目交流:</strong></p>
-                        <el-link v-for="social in contactInfo.social" :key="social.name" :href="social.url"
-                            target="_blank" rel="noopener noreferrer" class="social-link-item" type="primary"
-                            :underline="false">
-                            <el-icon v-if="social.icon" class="social-icon">
-                                <component :is="social.icon" />
-                            </el-icon>
-                            {{ social.name }}
-                        </el-link>
-                    </div>
-                </el-card>
-
-            </el-col>
-        </el-row>
+                </el-col>
+            </el-row>
+        </div>
     </div>
 </template>
 
@@ -182,7 +184,6 @@ const resetForm = () => {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
-    /* 增加与下方内容的间距 */
     line-height: 2;
 }
 
@@ -204,7 +205,7 @@ const resetForm = () => {
     background-color: #f9fafc;
     border: 1px solid #e4e7ed;
     border-radius: 8px;
-    padding: 30px;
+    padding: 20px;
     height: 100%;
 }
 

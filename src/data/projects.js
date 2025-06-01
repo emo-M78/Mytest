@@ -19,7 +19,7 @@ export const projects = ref([
             '/images/Users.png',
             '/images/wxinfo.png',
         ],
-        githubUrl: 'https://github.com/emo-M78/Mytest',
+        githubUrl: 'https://github.com/emo-M78/DeviceBorrow',
         tags: ['Java', 'Element Plus', 'Vue 3', 'WXML'],
         technologies: [
             { name: 'Vue 3', category: '前端' },
@@ -39,12 +39,13 @@ export const projects = ref([
             '利用 Markdown 语法进行内容创作，发布个人博客文章、项目展示等内容，实现高效的内容管理与展示。',
             '定期维护网站，排查并修复潜在的样式与功能问题，探索并应用 Hexo 插件拓展网站功能，如添加评论系统、优化 SEO 等。'
         ],
+        imageUrl: '/images/首页.png',
         images: [
-            '/images/bianyijie_1.png',
-            '/images/bianyijie_2.png',
-            '/images/bianyijie_3.png',
+            '/images/首页.png',
+            '/images/文章页面.png',
+            '/images/侧边栏.png',
         ],
-        githubUrl: 'https://github.com/emo-M78/Mytest',
+        githubUrl: 'https://github.com/emo-M78/My-Blog.git',
         tags: ['Github', 'Hexo'],
         technologies: [
             { name: 'Vue 3', category: '前端' },

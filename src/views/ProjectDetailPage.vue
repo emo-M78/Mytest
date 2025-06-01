@@ -46,9 +46,10 @@ const projectFound = computed(() => !!project.value)
         <div class="tech-section" v-if="project.technologies && project.technologies.length > 0">
             <h2>技术栈</h2>
             <el-tag v-for="tech in project.technologies" :key="tech.name" type="primary" effect="plain" size="large"
-                style="margin: 5px 8px;">
+                style="color: black; margin: 5px 8px;">
                 {{ tech.name }}
-                <span v-if="tech.category" style="font-size: 0.8em; opacity: 0.7;"> ({{ tech.category }})</span>
+                <span v-if="tech.category" style="color: black; font-size: 0.8em; opacity: 0.7;"> ({{ tech.category
+                }})</span>
             </el-tag>
         </div>
         <hr>
@@ -66,12 +67,17 @@ const projectFound = computed(() => !!project.value)
 </template>
 
 <style scoped>
+h2 {
+    color: black;
+}
+
 hr {
     margin: 10px;
 }
 
 .project-detail-page {
-    padding: 30px 0;
+    padding: 30px 20px;
+    background-image: linear-gradient(to top, #e0eef5 100%, #ace0f9 100%);
 }
 
 .el-breadcrumb {
@@ -86,7 +92,16 @@ hr {
 
 .el-carousel {
     margin-bottom: 30px;
+    background-color: transparent !important;
 }
+
+:deep(.el-carousel__item) {
+    background-color: transparent !important;
+}
+
+/* .el-carousel {
+    background-color: transparent !important;
+} */
 
 .tags-section {
     margin-bottom: 30px;
@@ -96,6 +111,7 @@ hr {
 .description-section {
     margin-bottom: 30px;
     line-height: 1.8;
+    color: black;
 }
 
 .links-section {

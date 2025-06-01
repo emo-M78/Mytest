@@ -9,10 +9,10 @@ import { computed } from 'vue'
 const router = useRouter()
 
 const personalInfo = ref({
-  name: '范杰 / 24P1120108054',
+  name: '范杰 - 24P1120108054',
   tagline: '一位正在学习中快速成长的编程学习者',
   introduction: '欢迎来到我的期末考核项目。在这里，您可以了解到我的技能、项目经验，每个项目都见证着我的理解和进步。非常荣幸能向您展示这个阶段性的学习成果。让我们一起探索技术的无限可能！',
-  heroImageUrl: '/images/hero-placeholder.jpg'
+  heroImageUrl: '/images/首页.png'
 })
 
 const featuredProjects = computed(() => projects.value.slice(0, 3)); // 例如，只取前 3 个作为特色项目
@@ -50,7 +50,7 @@ function navigateTo(routeName) {
       </div>
     </section>
 
-    <section class="about-intro-section section-padding">
+    <section class="about-intro-section section-padding textacolor">
       <div class="container text-center">
         <h2 class="section-title">关于我</h2>
         <p class="section-paragraph">
@@ -61,7 +61,7 @@ function navigateTo(routeName) {
       </div>
     </section>
 
-    <section class="featured-projects-section section-padding bg-light">
+    <section class="featured-projects-section section-padding bg-light textbcolor">
       <div class="container">
         <h2 class="section-title text-center">项目展示</h2>
         <el-row :gutter="30">
@@ -79,6 +79,14 @@ function navigateTo(routeName) {
 </template>
 
 <style scoped>
+.textacolor {
+  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+}
+
+.textbcolor {
+  background-image: linear-gradient(to bottom, #fff1eb 0%, #ace0f9 100%);
+}
+
 .home-page {
   overflow-x: hidden;
 }
@@ -92,13 +100,13 @@ function navigateTo(routeName) {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px;
+
   text-align: center;
 }
 
 .hero-content {
   max-width: 1200px;
-  padding: 40px;
+  /* padding: 40px; */
   border-radius: 8px;
   backdrop-filter: blur(2px);
 }
@@ -146,7 +154,7 @@ function navigateTo(routeName) {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  /* padding: 0 20px; */
 }
 
 .text-center {
